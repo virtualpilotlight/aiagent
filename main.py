@@ -37,8 +37,10 @@ if usage is None:
         "Response has no usage data, which likely means the API request failed."
     )
 
-print(f"User prompt: {args.user_prompt}")
-print(f"Prompt tokens: {usage.prompt_tokens}")
-print(f"Response tokens: {usage.completion_tokens}")
+if args.verbose:
+    print(f"User prompt: {args.user_prompt}")
+    print(f"Prompt tokens: {usage.prompt_tokens}")
+    print(f"Response tokens: {usage.completion_tokens}")
+
 print("Response:")
 print(response.choices[0].message.content)
