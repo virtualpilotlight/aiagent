@@ -1,5 +1,6 @@
 #from get_files_info.py import get_files_info
 import os
+from config.py import MAX_CHARS
 
 def get_file_content(working_directory: str, file_path: str) -> str:
     """
@@ -18,12 +19,12 @@ def get_file_content(working_directory: str, file_path: str) -> str:
         if not os.path.isfile(file_path):
             return f'Error: File not found or is not a regular file: "{file_path}"'
 
-        lines = []
-        for name in os.listdir(target_dir):
-            item_path = os.path.join(target_dir, name)
-            file_size = os.path.getsize(item_path)
-            is_dir = os.path.isdir(item_path)
-            lines.append(f"- {name}: file_size={file_size} bytes, is_dir={is_dir}")
+
+        with open(file_path, "r") as f:
+            file_content_string = f.read(MAX_CHARS)
+        # After reading the first MAX_CHARS...
+        if f.read(1):
+            content += f'[...File "{file_path}" truncated at {MAX_CHARS} characters]'
 
         return "\n".join(lines)
     except Exception as e:
