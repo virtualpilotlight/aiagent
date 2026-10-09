@@ -1,12 +1,8 @@
-#from get_files_info.py import get_files_info
 import os
 from config.py import MAX_CHARS
 
 def get_file_content(working_directory: str, file_path: str) -> str:
-    """
-    if file content outside of file path
-    f'Error: Cannot read "{file_path}" as it is outside the permitted working directory'
-    """
+
     try:
         working_dir_abs = os.path.abspath(working_directory)
         target_dir = os.path.normpath(os.path.join(working_dir_abs, file_path))
