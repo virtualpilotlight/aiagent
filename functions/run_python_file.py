@@ -1,5 +1,5 @@
 import os
-from socket import timeout
+import subprocess
 
 def run_python_file(
     working_directory: str, file_path: str, args: list[str] | None = None
@@ -20,12 +20,26 @@ def run_python_file(
 
         command = ["python", target_file]
 
-        if not args == None:
+        if args != None:
             command.extend(args)
 
-        complete_process = subprocess.run(command, text=True, timeout=30)
+        complete_process = subprocess.run(command, cwd=working_dir_abs, capture_output=True, text=True, timeout=30)
 
-        return complete_process
+        return_str = ""
+        if complete_process.returncode != 0:
+            return_str = f"Process exited with code {complete_process.returncode}"
+
+        if complete_process.stdout == "" and complete_process.stderr == "":
+            return "No output produced"
+
+        if complete_process.stdout != "":
+            return_str += f"STDOUT:{complete_process.stdout}"
+
+        if complete_process.stderr != "":
+            return_str += f"STDERR:{complete_process.stderr}"
+
+        #return f"Process exiteded with code {exit_code}\nSTDOUT: {complete_process.stdout}\nSTDERR: {complete_process.stderr}"
+        return return_str
 
     except Exception as e:
         return f"Error: executing Python file: {e}"
