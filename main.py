@@ -5,6 +5,13 @@ from openai import OpenAI
 
 import argparse
 
+from prompts import system_prompt
+
+from functions.call_function import available_functions
+
+import json
+
+from functions.get_files_info import schema_get_files_info
 
 load_dotenv()
 api_key = os.environ.get("OPENROUTER_API_KEY")
@@ -23,13 +30,21 @@ args = parser.parse_args()
 #prompt = "Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum."
 
 messages = [
+    {"role": "system", "content": system_prompt},
     {"role": "user", "content": args.user_prompt},
 ]
 
 response = client.chat.completions.create(
     model="openrouter/free",
     messages=messages,
+    tools=available_functions,
 )
+
+message = response.choices[0].message
+if message.tool_calls != None:
+    for tool_call in message.tool_calls:
+        function_args = json.loads(tool_call.function.arguments or "{}")
+        print(f"Calling function: {tool_call.function.name}({function_args})")
 
 usage = response.usage
 if usage is None:
