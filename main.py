@@ -12,6 +12,9 @@ from functions.call_function import available_functions
 import json
 
 from functions.get_files_info import schema_get_files_info
+from functions.get_file_content import schema_get_file_content
+from functions.write_file import schema_write_file
+from functions.run_python_file import schema_run_python_file
 
 load_dotenv()
 api_key = os.environ.get("OPENROUTER_API_KEY")

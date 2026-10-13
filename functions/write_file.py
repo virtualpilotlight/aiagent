@@ -23,7 +23,7 @@ def write_file(working_directory: str, file_path: str, content: str) -> str:
     except Exception as e:
         return f"Error: {e}"
 
-schema_get_file_content = {
+schema_write_file = {
     "type": "function",
     "function": {
         "name": "write_file",
