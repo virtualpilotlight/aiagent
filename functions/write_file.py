@@ -26,14 +26,14 @@ def write_file(working_directory: str, file_path: str, content: str) -> str:
 schema_get_file_content = {
     "type": "function",
     "function": {
-        "name": "get_file_content",
-        "description": "Get the content of a file within a specific directory",
+        "name": "write_file",
+        "description": "write a file in a give directory",
         "parameters": {
             "type": "object",
             "properties": {
                 "directory": {
                     "type": "string",
-                    "description": "only reads {MAX_CHARS} if the file is found",
+                    "description": "write to a file if it is within the allowed directory",
                 },
             },
         },
