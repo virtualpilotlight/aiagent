@@ -31,10 +31,15 @@ schema_write_file = {
         "parameters": {
             "type": "object",
             "properties": {
-                "directory": {
+                "file_path": {
                     "type": "string",
-                    "description": "write to a file if it is within the allowed directory",
+                    "description": "where the file will be written",
                 },
+                "content": {
+                    "type": "string",
+                    "description": "what will be writen in the file",
+                },
+                "required": ["file_path", "content"],
             },
         },
     },

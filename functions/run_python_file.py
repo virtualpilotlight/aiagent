@@ -53,10 +53,15 @@ schema_run_python_file = {
         "parameters": {
             "type": "object",
             "properties": {
-                "directory": {
+                "file_path": {
                     "type": "string",
-                    "description": "run a python file",
+                    "description": "where the python is",
                 },
+                "args": {
+                    "type": "array",
+                    "description": "what the arguments are",
+                },
+                "required": ["file_path"],
             },
         },
     },

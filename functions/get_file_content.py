@@ -41,15 +41,16 @@ schema_get_file_content = {
     "type": "function",
     "function": {
         "name": "get_file_content",
-        "description": "Get the content of a file within a specific directory",
+        "description": "Read the content of a file within a specific directory",
         "parameters": {
             "type": "object",
             "properties": {
-                "directory": {
+                "file_path": {
                     "type": "string",
                     "description": "only reads {MAX_CHARS} if the file is found",
                 },
             },
+            "required": ["file_path"],
         },
     },
 }
