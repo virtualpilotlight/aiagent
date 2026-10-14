@@ -9,3 +9,5 @@ available_functions = [
     schema_write_file,
     schema_run_python_file
 ]
+
+def call_function(tool_call, verbose: bool = False) -> dict:
