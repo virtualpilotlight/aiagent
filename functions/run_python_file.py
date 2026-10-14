@@ -59,10 +59,13 @@ schema_run_python_file = {
                 },
                 "args": {
                     "type": "array",
+                    "items": {
+                        "type": "string",
+                    },
                     "description": "what the arguments are",
                 },
-                "required": ["file_path"],
             },
+            "required": ["file_path"],
         },
     },
 }

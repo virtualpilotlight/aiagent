@@ -1,13 +1,8 @@
 import os
 import sys
 
-# 1. Get the absolute path of the directory containing the current script
 current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# 2. Move up one level to the parent directory
 parent_dir = os.path.dirname(current_dir)
-
-# 3. Add the parent directory to the sys.path
 sys.path.append(parent_dir)
 
 from config import MAX_CHARS
