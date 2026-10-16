@@ -28,6 +28,7 @@ def call_function(tool_call, verbose: bool = False) -> dict:
         "write_file": write_file,
         "run_python_file": run_python_file
     }
+
     if tool_call in function_map:
         return {
             "role": "tool",
